@@ -1,0 +1,25 @@
+.cuadro {
+    background: chartreuse;
+    height: 300px;
+    width: 500px;
+}
+
+.amarillo {
+    background-color: yellow;
+}
+.verde {
+    background-color: chartreuse;
+}
+
+.casilla {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid blue;
+}
+
+.casillas {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 8px;
+}

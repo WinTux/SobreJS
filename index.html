@@ -1,0 +1,331 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        document.write("<h3>Funciones</h3>");
+        var elemento = "34";
+        var numero = parseInt(elemento);
+        document.write("Concatenación: " + (elemento + 6));
+        document.write("<br>Suma: " + (numero + 6));
+
+        var elemento = "34.9";
+        var numero = parseFloat(elemento);
+        document.write("<br>Concatenación: " + (elemento + 6));
+        document.write("<br>Suma: " + (numero + 6));
+
+        var elemento = "+";
+        var numero = parseInt(elemento, 16);
+        document.write("<br>Valor: " + numero);
+        document.write("Concatenación: " + (elemento + 6));
+        document.write("<br>Suma: " + (numero + 6));
+
+        //función escape(cadena)
+        elemento = "Este\ntexto\tes corto.";
+        res = escape(elemento);
+        document.write("<br>res: " + res);
+
+        //función unscape(string)
+        elemento = "Este%0Atexto%09es%20corto";
+        res = unescape(elemento);
+        document.write("<br>res: " + res);
+
+        //NaN: Not a Number
+        res = isNaN(numero);
+        document.write("<br>es NaN: " + res + "<br>");
+
+        //eval 
+        document.write((4 + 7) * 3);
+        elemento = "(4 + 7) * 3";
+        document.write("<br>");
+        document.write(elemento);
+        document.write("<br>");
+        document.write(eval(elemento));
+        document.write("<br>");
+        document.write(eval((4 + 7) * 3));
+
+        //OBJETOS - CLASES
+        function Circulo(radio){
+            this.radio = radio;
+            this.area = 100;
+            this.perimetro = 0;
+            function area(){
+                area = 3.1415 * radio * radio;
+            }
+            function perimetro(){
+                perimetro = 3.1415 * radio * 2;
+            }
+        }
+
+        //Definiendo un objeto
+        const cir = {
+            radio: 2,
+            area : function(){
+                return 3.1416 * this.radio * this.radio;
+            },
+            perimetro: function(){
+                return 3.1416 * this.radio * 2;
+            }
+        };
+
+        document.write("<h3>Objeto del tipo circulo</h3>");
+        document.write("Radio: " + cir.radio+ "<br>");
+        document.write("Area: " + cir.area() + "<br>");
+        document.write("Perimetro: " + cir.perimetro() + "<br>");
+        cir.radio = 5;
+        cir["radio"] = 8;
+        document.write("Radio: " + cir.radio+ "<br>");
+        document.write("Area: " + cir.area() + "<br>");
+        document.write("Perimetro: " + cir.perimetro() + "<br>");
+
+        const cir2 = {
+            radio: 2,
+            area : function(){
+                return 3.1416 * this.radio * this.radio;
+            },
+            perimetro: function(){
+                return 3.1416 * this.radio * 2;
+            }
+        };
+        const cir3 = {
+            radio: 4,
+            area : function(){
+                return 3.1416 * this.radio * this.radio;
+            },
+            perimetro: function(){
+                return 3.1416 * this.radio * 2;
+            }
+        };
+
+        var circulos = [cir, cir2, cir3];
+
+        document.write("<br>Area de circulos[2]: " + circulos[2].area() + "<br>");
+
+        //Iterando en todos los circulos:
+        document.write("<h3>Area de circulos</h3>");
+        for(indice = 0; indice < circulos.length; indice++){
+            document.write("<br>Area del circulo "+ indice +": " + circulos[indice].area() + "<br>");
+        }
+
+        // infix:   a $ b
+        // postfix: a b $
+        // prefix:  $ a b
+
+        // (4 + 6) * 7
+        // 4 6 + 7 *
+        // * + 4 6 7
+
+        //OBJETOS PROPIOS DE JAVASCRIPT
+        //String, Array, Math, Date
+        var cad = "as-d-fs-a";
+        var n = cad.length;
+        var caracter = cad.charAt(2);
+        var arreglo_subcadenas = cad.split('-');// ["as", "d", "fs" , "a"]
+
+        //Usando la palabra reservada Class
+        /***********************************
+         * Estructura de tado Stack (Pila) *
+         ***********************************/
+
+         /*
+         push(elemento)
+         pop()
+         peek()
+         isEmpty()
+         size()
+         print()
+         */
+        class Stack{
+            constructor(){
+                this.elementos = [];
+            }
+            push(elem){
+                this.elementos.push(elem);
+            }
+            pop(){
+                return this.elementos.pop();
+            }
+            peek(){
+                return this.elementos[this.elementos.length - 1];
+            }
+            isEmpty(){
+                return this.size() == 0;
+            }
+            size(){
+                return this.elementos.length;
+            }
+            print(){
+                document.write("<br>" + this.elementos.toString());
+            }
+        }
+
+        var p1 = new Stack();
+        document.write("<br>Está vacío: " + p1.isEmpty());
+        document.write("<br>Elemento que está en la cima: " + p1.peek());
+        p1.push("Pepe");
+        p1.push("Ana");
+        p1.push("Sofía");
+        p1.push("Carlos");
+        document.write("<br>Está vacío: " + p1.isEmpty());
+        document.write("<br>Cantidad de elementos: " + p1.size());
+        var aux = p1.pop();
+        document.write("<br>Elemento que está en la cima: " + p1.peek());
+        document.write("<br>Cantidad de elementos: " + p1.size());
+        p1.print();
+
+        /***********************************
+         * Estructura de tado Queue (Cola) *
+         ***********************************/
+        // [kiu]
+         /*
+         enqueue(elemento)
+         dequeue()
+         peek()
+         isEmpty()
+         size()
+         print()
+         */
+        class Queue1{
+            constructor(){
+                this.elementos = [];
+            }
+            enqueue(elem){
+                this.elementos.push(elem);
+            }
+            dequeue(){
+                return this.elementos.shift();
+            }
+            isEmpty(){
+                return this.size() == 0;
+            }
+            peek(){
+                return this.isEmpty() ? null : this.elementos[0];
+            }
+            size(){
+                return this.elementos.length;
+            }
+            print(){
+                document.write("<br>" + this.elementos.toString());
+            }
+        }
+        var c1 = new Queue1();
+        document.write("<br>Está vacío: " + c1.isEmpty());
+        document.write("<br>Elemento que está al frente: " + c1.peek());
+        c1.enqueue("Pepe");
+        c1.enqueue("Ana");
+        c1.enqueue("Sofía");
+        c1.enqueue("Carlos");
+        document.write("<br>Está vacío: " + c1.isEmpty());
+        document.write("<br>Cantidad de elementos: " + c1.size());
+        var aux = c1.dequeue();
+        document.write("<br>Elemento que está al frente: " + c1.peek());
+        document.write("<br>Cantidad de elementos: " + c1.size());
+        c1.print();
+        
+        //Queue con complejidad constante O(1)
+        class Queue2{
+            constructor(){
+                this.elementos = {};
+                this.frente = 0;
+                this.atras = 0;//para agregar elemento
+            }
+            enqueue(elem){
+                this.elementos[this.atras++] = elem;
+                //this.atras++;
+            }
+            dequeue(){
+                const elem = this.elementos[this.frente];
+                delete this.elementos[this.frente];
+                this.frente++;
+                return elem;
+            }
+            isEmpty(){
+                return this.atras - this.frente == 0;
+            }
+            peek(){
+                return this.elementos[this.frente];
+            }
+            size(){
+                return this.atras - this.frente;
+            }
+            print(){
+                document.write(this.elementos);
+                console.log(this.elementos);
+            }
+
+        }
+        var c2 = new Queue2();
+        document.write("<br>Está vacío: " + c2.isEmpty());
+        document.write("<br>Elemento que está al frente: " + c2.peek());
+        c2.enqueue("Pepe");
+        c2.enqueue("Ana");
+        c2.enqueue("Sofía");
+        c2.enqueue("Carlos");
+        document.write("<br>Está vacío: " + c2.isEmpty());
+        document.write("<br>Cantidad de elementos: " + c2.size());
+        var aux = c2.dequeue();
+        document.write("<br>Elemento que está al frente: " + c2.peek());
+        document.write("<br>Cantidad de elementos: " + c2.size());
+        c2.print();
+        var aux = c2.dequeue();
+        c2.enqueue("Rosa");
+        c2.print();
+
+        // Se habló sobre listas enlazadas
+
+        //Interpolación
+        let casado = false;
+        let nombre = "Pepe";
+        document.write("<br>");
+        document.write(`${nombre} está casado: ${casado ? "Felizmente casado" : "No. Disfrutando la soltería"}.`);
+        document.write(`<br>${nombre.toUpperCase()}`);
+        document.write(`<br>${c2.print()}`);
+
+        //VAR
+        var unaVariable = "uno";
+        var unaVariable = "dos";
+
+        //LET
+        let estado = false;
+        estado = true;
+
+        //Alcance (scope)
+        //var -> sirve para declarar variables locales
+        var varAlcance = true;
+        if(varAlcance){
+            var varAlcance = false;
+        }
+        document.write('<br>' + varAlcance);
+
+        var letAlcance = true;
+        if(letAlcance){
+            let letAlcance = false;
+        }
+        document.write('<br>' + letAlcance);
+
+        var j = -1;
+        for(let j=0; j < 10; j++){
+            document.write(j);
+        }
+        document.write(`<br>Valor de j: ${j}`);
+
+        //CONST
+        const constAlcance = true;
+        //constAlcance = false;//Esto lanza error durante la ejecución
+
+        //NOTA: const no sirve para bucles.
+        //Esto sí puede existir:
+        const constAlcance2 = true;
+        if(constAlcance2){
+            const constAlcance2 = false;
+            document.write('<br>constAlcance2: '+constAlcance2);
+        }
+        document.write('<br>constAlcance2: '+constAlcance2);
+    </script>
+</body>
+</html>
